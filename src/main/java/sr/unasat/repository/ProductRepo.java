@@ -36,11 +36,12 @@ public class ProductRepo {
         return product;
     }
 
-    public Product createProduct(String naam, double prijs, String adres) {
+    public Product createProduct(String naam, double prijs, String adres, String imagePath) {
         product = new Product();
         product.setNaam(naam);
         product.setPrijs(prijs);
         product.setAdres(adres);
+        product.setImage(imagePath);
         return createProduct(product);
     }
 

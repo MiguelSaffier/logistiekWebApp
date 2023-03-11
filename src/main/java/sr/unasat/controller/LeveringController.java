@@ -7,12 +7,12 @@ import sr.unasat.service.LeveringService;
 
 import java.util.List;
 
-@Path("levering")
+@Path("/levering")
 public class LeveringController {
 
     LeveringService leveringService = new LeveringService();
 
-    @Path("/alle-leveringen")
+    @Path("/get_leveringen")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Levering> alleLeveringen() {

@@ -1,8 +1,10 @@
 package sr.unasat.controller;
 
-import sr.unasat.entity.Product;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import sr.unasat.dto.ProductDTO;
+import sr.unasat.entity.Product;
+import sr.unasat.mapper.ProductDTOMapper;
 import sr.unasat.service.ProductService;
 
 import java.util.List;
@@ -10,19 +12,13 @@ import java.util.List;
 @Path("/product")
 public class ProductController {
 
-    ProductService productService = new ProductService();
+    ProductDTOMapper productDTOMapper = new ProductDTOMapper();
+    ProductService productService = new ProductService(productDTOMapper);
 
-
-    @GET
-    @Produces("text/plain")
-    public String hello(){
-        return "hello world, product";
-    }
-
-    @Path("/beschkbare-producten")
+    @Path("/get_producten")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Product> beschikbareProducten() {
+    public List<ProductDTO> beschikbareProducten() {
         return productService.getAllProducts();
     }
 
@@ -48,7 +44,8 @@ public class ProductController {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Product update(Product product) { return productService.updateProduct(product);
+    public Product update(Product product) {
+        return productService.updateProduct(product);
     }
 
     @Path("/find")

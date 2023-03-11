@@ -4,6 +4,7 @@ import sr.unasat.entity.Bestelling;
 import sr.unasat.entity.BestellingProduct;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import sr.unasat.mapper.ProductDTOMapper;
 import sr.unasat.service.ProductService;
 
 import java.util.ArrayList;
@@ -11,13 +12,14 @@ import java.util.List;
 
 public class BestellingProductRepo {
     private final EntityManager entityManager;
+    private final ProductDTOMapper productDTOMapper = new ProductDTOMapper();
 
     public BestellingProductRepo(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     public void createBestellingProduct(Bestelling bestelling, List<String> product, List<Integer> amount) {
-        ProductService ps = new ProductService();
+        ProductService ps = new ProductService(productDTOMapper);
 
         for (int i = 0; i < product.size(); i++) {
             BestellingProduct bestellingProduct = new BestellingProduct();

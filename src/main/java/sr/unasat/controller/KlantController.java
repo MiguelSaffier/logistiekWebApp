@@ -1,21 +1,23 @@
 package sr.unasat.controller;
 
-import sr.unasat.entity.Klant;
-import jakarta.ws.rs.*;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import sr.unasat.entity.Klant;
 import sr.unasat.service.KlantService;
 
 import java.util.List;
 
-@Path("klant")
+@Path("/klant")
 public class KlantController {
 
     KlantService klantService = new KlantService();
 
-    @Path("/alle-klanten")
+    @Path("/get_klanten")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Klant> alleKlanten() {
+    public List<Klant> getKlanten() {
         return klantService.getKlant();
     }
 

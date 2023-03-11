@@ -8,12 +8,12 @@ import sr.unasat.service.ChauffeurService;
 
 import java.util.List;
 
-@Path("chauffeur")
+@Path("/chauffeur")
 public class ChauffeurController {
 
     ChauffeurService chauffeurService = new ChauffeurService();
 
-    @Path("/alle-chauffeurs")
+    @Path("/get_chauffeurs")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Chauffeur> alleChauffeurs() {

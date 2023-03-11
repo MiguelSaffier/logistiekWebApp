@@ -1,6 +1,11 @@
 package sr.unasat.entity;
 
 import jakarta.persistence.*;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 @Entity
 public class Chauffeur {
     @Id
@@ -9,6 +14,9 @@ public class Chauffeur {
     private String voornaam;
     private String achternaam;
     private String telefoon;
+    @Lob
+    @Column(columnDefinition="LONGBLOB")
+    private byte[] image;
 
     public int getId() {
         return id;
@@ -40,6 +48,21 @@ public class Chauffeur {
 
     public void setTelefoon(String telefoon) {
         this.telefoon = telefoon;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(String imagePath) {
+        byte[] imageData;
+        try {
+            imageData = Files.readAllBytes(Paths.get(imagePath));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        this.image = imageData;
     }
 
     @Override

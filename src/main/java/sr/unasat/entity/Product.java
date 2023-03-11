@@ -1,13 +1,13 @@
 package sr.unasat.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.NaturalIdCache;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +25,11 @@ public class Product {
 
     private double prijs;   //prijs per cub
     private String adres;
+
+    @Lob
+    @Column(columnDefinition="LONGBLOB")
+    private byte[] image;
+
 
     @OneToMany(mappedBy = "product")
     private List<BestellingProduct> bestellingen = new ArrayList<>();
@@ -67,6 +72,21 @@ public class Product {
 
     public void setBestellingen(List<BestellingProduct> bestellingen) {
         this.bestellingen = bestellingen;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(String imagePath) {
+        byte[] imageData;
+        try {
+            imageData = Files.readAllBytes(Paths.get(imagePath));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        this.image = imageData;
     }
 
     @Override

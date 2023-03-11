@@ -35,11 +35,12 @@ public class ChauffeurRepo {
         return chauffeur;
     }
 
-    public Chauffeur createChauffeur(String voornaam, String achternaam, String telefoon) {
+    public Chauffeur createChauffeur(String voornaam, String achternaam, String telefoon, String imagePath) {
         chauffeur = new Chauffeur();
         chauffeur.setVoornaam(voornaam);
         chauffeur.setAchternaam(achternaam);
         chauffeur.setTelefoon(telefoon);
+        chauffeur.setImage(imagePath);
         return createChauffeur(chauffeur);
     }
 

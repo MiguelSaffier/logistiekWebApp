@@ -8,13 +8,13 @@ import sr.unasat.service.BestellingService;
 
 import java.util.List;
 
-@Path("bestelling")
+@Path("/bestelling")
 public class BestellingController {
 
 
     BestellingService bestellingService = new BestellingService();
 
-    @Path("/alle-bestellingen")
+    @Path("/get_bestellingen")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Bestelling> alleBestellingen() {

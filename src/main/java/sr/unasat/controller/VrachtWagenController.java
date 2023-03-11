@@ -7,12 +7,12 @@ import sr.unasat.service.VoertuigService;
 
 import java.util.List;
 
-@Path("vrachtwagen")
+@Path("/vrachtwagen")
 public class VrachtWagenController {
 
     VoertuigService voertuigService = new VoertuigService();
 
-    @Path("/actieve-diensten")
+    @Path("/get_vrachtwagen")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Voertuig> alleVoertuigen() {

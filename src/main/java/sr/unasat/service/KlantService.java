@@ -10,13 +10,17 @@ public class KlantService {
 
     private final KlantRepo repository;
 
-    public KlantService() {
+    public KlantService() {;
         this.repository = new KlantRepo(JPAConfiguration.getEntityManager());
     }
 
     public List<Klant> getKlant() {
         return repository.getKlant();
     }
+
+//    public List<KlantDTO> getKlant() {
+//        return repository.getKlant().stream().map(klantDTOMapper).collect(Collectors.toList());
+//    }
 
     public Klant createKlant(String voornaam, String achternaam, String adres, String telefoon) {
         return repository.createKlant(voornaam, achternaam, adres, telefoon);

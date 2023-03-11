@@ -1,13 +1,12 @@
 package sr.unasat.repository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.TypedQuery;
 import sr.unasat.entity.Bestelling;
 import sr.unasat.entity.BestellingProduct;
 import sr.unasat.service.KlantService;
 
-
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.persistence.TypedQuery;
 import java.time.LocalDate;
 import java.util.GregorianCalendar;
 import java.util.List;

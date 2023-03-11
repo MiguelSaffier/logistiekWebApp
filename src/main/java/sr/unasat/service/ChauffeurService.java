@@ -19,8 +19,8 @@ public class ChauffeurService {
         return repository.getChauffeur();
     }
 
-    public void createChauffeur(String voornaam, String achternaam, String telefoon) {
-        repository.createChauffeur(voornaam, achternaam, telefoon);
+    public void createChauffeur(String voornaam, String achternaam, String telefoon, String imagePath) {
+        repository.createChauffeur(voornaam, achternaam, telefoon, imagePath);
     }
 
     public Chauffeur findChauffeurByName(String voorNaam, String achterNaam) {
