@@ -24,6 +24,10 @@ public class ProductRepo {
         return typedQuery.getResultList();
     }
 
+    public byte[] getProductImage(int id) {
+     return findOneProductbyId(id).getImage();
+    }
+
     public Product createProduct(Product product) {
         try {
             entityManager.getTransaction().begin();
@@ -67,6 +71,20 @@ public class ProductRepo {
             entityManager.getTransaction().begin();
             product = findOneProductbyId(id);
             product.setPrijs(prijs);
+            entityManager.persist(product);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+        return product;
+    }
+
+    public Product updateImage(int id, String imagePath) {
+        try {
+            entityManager.getTransaction().begin();
+            product = findOneProductbyId(id);
+            product.setImage(imagePath);
             entityManager.persist(product);
             entityManager.getTransaction().commit();
         } catch (Exception e) {

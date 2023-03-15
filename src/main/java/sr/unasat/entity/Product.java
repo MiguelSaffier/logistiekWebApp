@@ -8,8 +8,6 @@ import org.hibernate.annotations.NaturalIdCache;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Entity
@@ -31,8 +29,8 @@ public class Product {
     private byte[] image;
 
 
-    @OneToMany(mappedBy = "product")
-    private List<BestellingProduct> bestellingen = new ArrayList<>();
+//    @OneToMany(mappedBy = "product")
+//    private List<BestellingProduct> bestellingen = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -66,13 +64,13 @@ public class Product {
         this.adres = adres;
     }
 
-    public List<BestellingProduct> getBestellingen() {
-        return bestellingen;
-    }
+//    public List<BestellingProduct> getBestellingen() {
+//        return bestellingen;
+//    }
 
-    public void setBestellingen(List<BestellingProduct> bestellingen) {
-        this.bestellingen = bestellingen;
-    }
+//    public void setBestellingen(List<BestellingProduct> bestellingen) {
+//        this.bestellingen = bestellingen;
+//    }
 
     public byte[] getImage() {
         return image;
@@ -85,7 +83,6 @@ public class Product {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         this.image = imageData;
     }
 

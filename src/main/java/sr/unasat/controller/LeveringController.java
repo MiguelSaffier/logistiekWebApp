@@ -1,5 +1,6 @@
 package sr.unasat.controller;
 
+import jakarta.ws.rs.core.Response;
 import sr.unasat.entity.Levering;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -19,41 +20,51 @@ public class LeveringController {
         return leveringService.getLevering();
     }
 
-//    @Path("/add")
-//    @POST
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public DierDto add(DierDto dierDto) { return dierService.createDier(dierDto);
-//    }
+    @Path("/add/{id}")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)                       //eerst voertuigchauffeur aanmaken dan levering
+    public Levering add(@PathParam("id") int id) {
+        return leveringService.createLevering(id);
+    }
 
-    //    @Path("/remove")
-//    @DELETE
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public int remove(Long lidmaatschapId) {
-//        return dierService.deleteDier(lidmaatschapId);
-//    }
+    @Path("/remove/{id}")
+    @DELETE
+    public Response remove(@PathParam("id") int id) {
+        leveringService.deleteLevering(id);
+        return Response.noContent().build();
+
+    }
 
 
-    //    @Path("/update")
-//    @PUT
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public DierDto update(DierDto dierDto) { return dierService.updateDier(dierDto);
-//    }
+    @Path("/updateStatus")
+    @PUT
+    public Response updateStatus(@QueryParam("id") int id,
+                                 @QueryParam("status") String status) {
+        Levering levering = leveringService.updateLeveringStatus(id, status);
+        if (levering == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.noContent().build();
+        }
+    }
 
-    //    @Path("/find")
-//    @POST
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public DierDto findDier(DierDto dierDto) {
-//        return dierService.findDierById(dierDto.getId());
-//    }
-//
-//    @Path("/find-dieren-owner")
-//    @POST
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<DierDto> findDierenOfLid(Long lidId){
-//        return dierService.findDierenOfOwnerByOwnerId(lidId);
-//    }
+    @Path("/updateKosten")
+    @PUT
+    public Response updateTotaleKosten(@QueryParam("id") int id,
+                                       @QueryParam("kosten") double kosten) {
+        Levering levering = leveringService.updateTotaleKosten(id, kosten);
+        if (levering == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.noContent().build();
+        }
+    }
+
+    @Path("/find/{id}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Levering> findLevering(@PathParam("id") int id) {
+        return leveringService.findLeveringById(id);
+    }
+
 }

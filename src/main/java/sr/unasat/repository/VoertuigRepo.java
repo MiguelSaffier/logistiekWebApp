@@ -53,6 +53,11 @@ public class VoertuigRepo {
         return createVoertuig(voertuig);
     }
 
+    public Voertuig createVoertuig(String voertuigType, Voertuig voertuig1) {
+        voertuig1 = voertuigFactory.getInstance(voertuigType);
+        return createVoertuig(voertuig1);
+    }
+
 
     public Voertuig findVoertuigById(int id){
         return entityManager.find(VrachtWagen.class, id);

@@ -16,6 +16,7 @@
 		<link href="css/tiny-slider.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
 		<title>Lalsen Logistiek</title>
+	<script src="js/product.js"></script>
 	</head>
 
 	<body>
@@ -50,21 +51,24 @@
 		</nav>
 		<!-- End Header/Navigation -->
 
+		<img src="" alt="">
+
+
 		<!-- Start Hero Section -->
-			<div class="hero">
-				<div class="container">
-					<div class="row justify-content-between">
-						<div class="col-lg-5">
-							<div class="intro-excerpt">
-								<h1>Shop</h1>
-							</div>
-						</div>
-						<div class="col-lg-7">
-							
-						</div>
-					</div>
-				</div>
-			</div>
+<!--			<div class="hero">-->
+<!--				<div class="container">-->
+<!--					<div class="row justify-content-between">-->
+<!--						<div class="col-lg-5">-->
+<!--							<div class="intro-excerpt">-->
+<!--								<h1>Shop</h1>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--						<div class="col-lg-7">-->
+<!--							-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
 		<!-- End Hero Section -->
 
 		
@@ -290,5 +294,13 @@
 		<script src="js/tiny-slider.js"></script>
 		<script src="js/custom.js"></script>
 	</body>
+
+<script>
+	const button = document.getElementById('fetch-image');
+	const container = document.getElementById('image-container');
+	button.addEventListener('click', function() {
+		displayImageFromAPI(container);
+	});
+</script>
 
 </html>

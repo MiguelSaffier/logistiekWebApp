@@ -22,7 +22,7 @@ public class KlantRepo {
         return typedQuery.getResultList();
     }
 
-    private Klant createKlant(Klant klant){
+    public Klant createKlant(Klant klant){
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(klant);
@@ -69,7 +69,6 @@ public class KlantRepo {
                     + id);
         }
             return klant;
-
     }
 
     public Klant updateNaam(int id, String voorNaam, String achterNaam){
@@ -84,7 +83,7 @@ public class KlantRepo {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
-        return null;
+        return klant;
     }
 
     public Klant updateTelefoon(int id, String telefoonNummer){

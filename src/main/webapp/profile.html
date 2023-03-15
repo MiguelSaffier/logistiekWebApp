@@ -49,20 +49,37 @@
 
 
 
+<div id="data-container"></div>
+<!--<p>loaddata(1).id</p>-->
 
-
-
-
-
-
+<script>
+   let data = function loadData() {
+        const id = 1;
+        fetch(`http://localhost:8080/logistiekWebApp_war_exploded/api/product/find/${id}`)
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('data-container');
+                container.innerHTML = `
+          <h1>${data.id}</h1>
+          <p>${data.naam}</p>
+          <p>${data.prijs}</p>
+          <p>${data.adres}</p>
+          <img src="${data.image}" alt="Profile Picture">
+        `;
+            })
+            .catch(error => console.error(error));
+    }
+    // Call the loadData function when the page loads
+    window.onload = loadData;
+</script>
 
 <!-- Start Footer Section -->
 <footer class="footer-section">
     <div class="container relative">
 
-        <div class="sofa-img">
-            <img src="images/truck.png" alt="Image" class="img-fluid">
-        </div>
+<!--        <div class="sofa-img">-->
+<!--            <img src="images/truck.png" alt="Image" class="img-fluid">-->
+<!--        </div>-->
 
         <div class="row">
             <div class="col-lg-8">
@@ -155,9 +172,19 @@
 <!-- End Footer Section -->
 
 
+
+
+
+
+
+
+
+
+
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/tiny-slider.js"></script>
 <script src="js/custom.js"></script>
+<script src="js/klant.js"></script>
 </body>
 
 </html>

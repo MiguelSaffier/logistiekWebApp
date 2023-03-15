@@ -1,12 +1,13 @@
 package sr.unasat.repository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 import sr.unasat.entity.Levering;
 import sr.unasat.service.BestellingService;
 import sr.unasat.strategy.LeveringStrategy;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.persistence.TypedQuery;
 import java.util.List;
 
 public class LeveringRepo {
@@ -19,10 +20,17 @@ public class LeveringRepo {
         this.entityManager = entityManager;
     }
 
-    public List<Levering> getLevering() {
+    private List<Levering> getAllLevering() {
         String query = "select l from Levering l";
         TypedQuery<Levering> typedQuery = entityManager.createQuery(query, Levering.class);
         return typedQuery.getResultList();
+    }
+
+    public List<Levering> getLevering() {
+        String getLeveringDetail = "select l.id, l.status, l.totaleKosten, l.bestelling.id from Levering l";
+        Query query = entityManager.createQuery(getLeveringDetail);
+        Object singleResult = query.getResultList();
+        return (List<Levering>) singleResult;
     }
 
     private Levering createLevering(Levering levering) {
@@ -77,14 +85,21 @@ public class LeveringRepo {
 
     }
 
-    public Levering findOneLeveringById(int id){
+    private Levering findOneLeveringById(int id){
             Levering levering = entityManager.find(Levering.class, id);
         if (levering == null) {
             throw new EntityNotFoundException("Can't find levering for ID "
                     + id);
         }
             return levering;
+    }
 
+    public List<Levering> findLeveringById(int id){
+        String getLeveringDetail = "select l.id, l.status, l.totaleKosten, l.bestelling.id from Levering l where l.id = :id";
+        Query query = entityManager.createQuery(getLeveringDetail);
+        query.setParameter("id", id);
+        Object singleResult = query.getResultList();
+        return (List<Levering>) singleResult;
     }
 
     public void deleteLevering(int id){

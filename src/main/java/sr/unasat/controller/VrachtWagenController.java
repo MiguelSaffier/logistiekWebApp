@@ -1,8 +1,9 @@
 package sr.unasat.controller;
 
-import sr.unasat.factory.Voertuig;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import sr.unasat.factory.Voertuig;
 import sr.unasat.service.VoertuigService;
 
 import java.util.List;
@@ -19,41 +20,33 @@ public class VrachtWagenController {
         return voertuigService.getAllVoertuig("vrachtwagen");
     }
 
-//    @Path("/add")
-//    @POST
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public DierDto add(DierDto dierDto) { return dierService.createDier(dierDto);
-//    }
 
-//    @Path("/remove")
-//    @DELETE
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public int remove(Long lidmaatschapId) {
-//        return dierService.deleteDier(lidmaatschapId);
-//    }
+    @Path("/add")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Voertuig add(@QueryParam("merk") String merk,
+                        @QueryParam("capaciteit") int capaciteit,
+                        @QueryParam("kentekenNummer") String kentekenNummer) {
+        return voertuigService.createVoertuig("vrachtwagen", merk, capaciteit, kentekenNummer);
+    }
 
 
-    //    @Path("/update")
-//    @PUT
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public DierDto update(DierDto dierDto) { return dierService.updateDier(dierDto);
-//    }
+    @Path("/remove/{id}")
+    @DELETE
+    public Response remove(@PathParam("id") int id) {
+        voertuigService.deleteVoertuig(id);
+        return Response.noContent().build();
+    }
 
-//    @Path("/find")
-//    @POST
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public DierDto findDier(DierDto dierDto) {
-//        return dierService.findDierById(dierDto.getId());
-//    }
-//
-//    @Path("/find-dieren-owner")
-//    @POST
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<DierDto> findDierenOfLid(Long lidId){
-//        return dierService.findDierenOfOwnerByOwnerId(lidId);
-//    }
+    @Path("/find/{id}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findKlantById(@PathParam("id") int id) {
+        Voertuig voertuig = voertuigService.findVoertuigById(id);
+        if (voertuig == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.ok(voertuig).build();
+        }
+    }
 }

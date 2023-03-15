@@ -23,4 +23,32 @@ public class BestellingProductService {
         return repository.getBestellingProduct(bestelling);
     }
 
+    public List<BestellingProduct> getBestellingProduct(int id){
+        return repository.getBestellingProduct(id);
+    }
+
+//    public List<BestellingProduct> getAllBestellingProduct(){
+//        return repository.getAllBestellingProduct();
+//    }
+
+    public void deleteBestellingProduct(int id){
+        repository.deleteBestellingProduct(id);
+    }
+
+    public BestellingProduct updateBestellingProduct(int id, String product, int amount){
+        return repository.updateBestellingProduct(id, product, amount);
+    }
+
+    public  List<BestellingProduct> getFullBestellingProducten() {
+        return repository.getAllBestellingProductenDetail();
+    }
+
+    public List<BestellingProduct> getFullBestellingProductById(int bestellingid) {
+        return repository.getFullBestellingProductById(bestellingid);
+    }
+
+    public BestellingProduct findBestellingProductByid(int id) {
+        return (BestellingProduct) repository.getBestellingProductById(id);
+    }
+
 }

@@ -23,6 +23,10 @@ public class ProductService {
         return repository.getAllProducts().stream().map(productDTOMapper).collect(Collectors.toList());
     }
 
+    public byte[] getProductImage(int id){
+        return repository.getProductImage(id);
+    }
+
     public Product createProduct(String naam, double prijs, String adres, String imagePath) {
         return repository.createProduct(naam, prijs, adres, imagePath);
     }
@@ -39,16 +43,16 @@ public class ProductService {
         return repository.findOneProductbyId(id);
     }
 
-    public void updatePrijs(int id, double prijs) {
-        repository.updatePrijs(id, prijs);
+    public Product updatePrijs(int id, double prijs) {
+        return repository.updatePrijs(id, prijs);
     }
 
     public Product updateProduct(Product product) {
         return repository.updateProduct(product);
     }
 
-    public void updateAdres(int id, String adres) {
-        repository.updateAdres(id, adres);
+    public Product updateAdres(int id, String adres) {
+       return repository.updateAdres(id, adres);
     }
 
     public void deleteProduct(int id) {
@@ -59,10 +63,8 @@ public class ProductService {
         repository.deleteProduct(product);
     }
 
-//    public void deleteProduct(Product product) {
-//        sr.unasat.repository.deleteProduct(product.getId());
-//    }
-
-//    3 delete scenarios, welke is beter? welke is sneller?
+    public Product updateImage(int id, String imagePath) {
+        return repository.updateImage(id, imagePath);
+    }
 
 }

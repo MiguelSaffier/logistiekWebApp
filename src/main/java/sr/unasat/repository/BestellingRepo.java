@@ -2,13 +2,13 @@ package sr.unasat.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import sr.unasat.entity.Bestelling;
-import sr.unasat.entity.BestellingProduct;
 import sr.unasat.service.KlantService;
 
 import java.time.LocalDate;
-import java.util.GregorianCalendar;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class BestellingRepo {
@@ -27,11 +27,26 @@ public class BestellingRepo {
         return typedQuery.getResultList();
     }
 
-    public List<BestellingProduct> getProducten() {
-        return bestelling.getProducten();
+    public List<Bestelling> getBestellingDetail(){
+        String findBestelling = "select b.id, b.bestellingDatum, k.id, k.voornaam, k.achternaam, b.leveringDatum, k.telefoon from Bestelling b inner join Klant k on b.klant.id = k.id";
+        Query query = entityManager.createQuery(findBestelling);
+        Object singleResult = query.getResultList();
+        return (List<Bestelling>) singleResult;
     }
 
-    private Bestelling createBestelling(Bestelling bestelling) {
+    public List<Bestelling> getBestellingDetail(int id){
+        String findOneBestelling = "select b.id, b.bestellingDatum, k.id, k.voornaam, k.achternaam, b.leveringDatum, k.telefoon from Bestelling b inner join Klant k on b.klant.id = k.id where b.id = :id";
+        Query query = entityManager.createQuery(findOneBestelling);
+        query.setParameter("id", id);
+        Object singleResult = query.getResultList();
+        return (List<Bestelling>) singleResult;
+    }
+
+//    public List<BestellingProduct> getProducten() {
+//        return bestelling.getProducten();
+//    }
+
+    public Bestelling createBestelling(Bestelling bestelling) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(bestelling);
@@ -43,13 +58,13 @@ public class BestellingRepo {
         return bestelling;
     }
 
-    public Bestelling createBestelling(String voorNaam, String achterNaam, int jaar, int maand, int dag ) {
+    public Bestelling createBestelling(int id, int jaar, int maand, int dag) {
         bestelling = new Bestelling();
         KlantService ks = new KlantService();
-
-        bestelling.setBestellingDatum(LocalDate.now());
-        bestelling.setLeveringDatum(new GregorianCalendar(jaar, maand, dag));
-        bestelling.setKlant(ks.findKlantByName(voorNaam, achterNaam));
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
+        bestelling.setBestellingDatum(LocalDate.now().format(formatter));
+        bestelling.setLeveringDatum(LocalDate.of(jaar, maand, dag).format(formatter));
+        bestelling.setKlant(ks.findKlantByid(id));
 
         return createBestelling(bestelling);
     }
@@ -63,26 +78,13 @@ public class BestellingRepo {
         return bestelling;
     }
 
-//    public Bestelling updateLeveringKosten(int id, double leveringKosten) {
-//        try {
-//            entityManager.getTransaction().begin();
-//            bestelling = findOneBestelling(id);
-//            bestelling.setLeveringskosten(leveringKosten);
-//            entityManager.persist(bestelling);
-//            entityManager.getTransaction().commit();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            entityManager.getTransaction().rollback();
-//        }
-//        return null;
-//    }
-
     public Bestelling updateLeveringDatum(int id, int jaar, int maand, int dag) {
 
         try {
             entityManager.getTransaction().begin();
             bestelling = findOneBestelling(id);
-            bestelling.setLeveringDatum(new GregorianCalendar(jaar, maand, dag));
+            DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
+            bestelling.setLeveringDatum(LocalDate.of(jaar, maand, dag).format(formatter));
             entityManager.persist(bestelling);
             entityManager.getTransaction().commit();
         } catch (Exception e) {

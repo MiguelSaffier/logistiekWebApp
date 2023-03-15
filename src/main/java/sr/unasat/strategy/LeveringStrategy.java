@@ -7,7 +7,8 @@ import sr.unasat.entity.VrachtWagen;
 import sr.unasat.factory.Voertuig;
 import sr.unasat.service.*;
 
-import java.time.LocalTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -21,7 +22,8 @@ public class LeveringStrategy {
         bs = new BestellingService();
         b = bs.findBestellingById(bestellingId);
 
-        if (b.getLeveringDatum().after(LocalTime.now())) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        if (LocalDate.parse(b.getLeveringDatum(), formatter).isAfter(LocalDate.now())) {
             return ("Levering datum gemist.");
         } else {
             return ("Onvoltooid");

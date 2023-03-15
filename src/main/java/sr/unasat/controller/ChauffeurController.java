@@ -1,9 +1,10 @@
 package sr.unasat.controller;
 
 
-import sr.unasat.entity.Chauffeur;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import sr.unasat.entity.Chauffeur;
 import sr.unasat.service.ChauffeurService;
 
 import java.util.List;
@@ -21,42 +22,79 @@ public class ChauffeurController {
     }
 
 
-//    @Path("/add")
-//    @POST
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public DierDto add(DierDto dierDto) { return dierService.createDier(dierDto);
-//    }
+    @Path("/get_chauffeur_image/{id}")
+    @GET
+    @Produces("image/jpeg")
+    public byte[] getChauffeurImage(@PathParam("id") int id) {
+        return chauffeurService.findChauffeurImage(id);
+    }
 
-    //    @Path("/remove")
-//    @DELETE
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public int remove(Long lidmaatschapId) {
-//        return dierService.deleteDier(lidmaatschapId);
-//    }
+    @Path("/add")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Chauffeur add(Chauffeur chauffeur) {
+        return chauffeurService.createChauffeur(chauffeur);
+    }
+
+    @Path("/remove/{id}")
+    @DELETE
+    public Response remove(@PathParam("id") int id) {
+        chauffeurService.deleteChauffeur(id);
+        return Response.noContent().build();
+    }
 
 
-    //    @Path("/update")
-//    @PUT
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public DierDto update(DierDto dierDto) { return dierService.updateDier(dierDto);
-//    }
+    @Path("/updateName")
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateName(@QueryParam("id") int id,
+                               @QueryParam("firstName") String firstName,
+                               @QueryParam("lastName") String lastName) {
+        Chauffeur chauffeur = chauffeurService.updateNaam(id, firstName, lastName);
+        if (chauffeur == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.ok(chauffeur).build();
+        }
+    }
+
+    @Path("/updatePhone")
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updatePhone(@QueryParam("id") int id,
+                                @QueryParam("phoneNumber") String phoneNumber) {
+        Chauffeur chauffeur = chauffeurService.updateTelefoon(id, phoneNumber);
+        if (chauffeur == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.ok(chauffeur).build();
+        }
+    }
 
 
-    //    @Path("/find")
-//    @POST
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public DierDto findDier(DierDto dierDto) {
-//        return dierService.findDierById(dierDto.getId());
-//    }
-//
-//    @Path("/find-dieren-owner")
-//    @POST
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<DierDto> findDierenOfLid(Long lidId){
-//        return dierService.findDierenOfOwnerByOwnerId(lidId);
-//    }
+    @Path("/find/{id}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findChauffeurById(@PathParam("id") int id) {
+        Chauffeur chauffeur = chauffeurService.findChauffeurById(id);
+        if (chauffeur == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.ok(chauffeur).build();
+        }
+    }
+
+    @Path("/findByName")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getChauffeurByFullName(@QueryParam("firstName") String firstName,
+                                      @QueryParam("lastName") String lastName) {
+        Chauffeur chauffeur = chauffeurService.findChauffeurByName(firstName, lastName);
+        if (chauffeur == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.ok(chauffeur).build();
+        }
+    }
 }

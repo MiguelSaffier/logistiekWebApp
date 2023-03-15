@@ -23,7 +23,7 @@ public class ChauffeurRepo {
         return typedQuery.getResultList();
     }
 
-    private Chauffeur createChauffeur(Chauffeur chauffeur) {
+    public Chauffeur createChauffeur(Chauffeur chauffeur) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(chauffeur);
@@ -60,6 +60,10 @@ public class ChauffeurRepo {
                     + id);
         }
         return chauffeur;
+    }
+
+    public byte[] findChauffeurImage(int id){
+        return findChauffeurById(id).getImage();
     }
 
     public Chauffeur updateNaam(int id, String voorNaam, String achterNaam) {

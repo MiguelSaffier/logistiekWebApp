@@ -23,6 +23,10 @@ public class ChauffeurService {
         repository.createChauffeur(voornaam, achternaam, telefoon, imagePath);
     }
 
+    public Chauffeur createChauffeur(Chauffeur chauffeur) {
+        return repository.createChauffeur(chauffeur);
+    }
+
     public Chauffeur findChauffeurByName(String voorNaam, String achterNaam) {
         return repository.findOneChauffeur(voorNaam, achterNaam);
     }
@@ -31,16 +35,20 @@ public class ChauffeurService {
         return repository.findChauffeurById(id);
     }
 
-    public void updateNaam(int id, String voornaam, String achternaam){
-        repository.updateNaam(id, voornaam, achternaam);
+    public Chauffeur updateNaam(int id, String voornaam, String achternaam){
+       return repository.updateNaam(id, voornaam, achternaam);
     }
 
-    public void updateTelefoon(int id, String telefoon){
-        repository.updateTelefoon(id, telefoon);
+    public Chauffeur updateTelefoon(int id, String telefoon){
+        return repository.updateTelefoon(id, telefoon);
     }
 
     public void deleteChauffeur(int id){
         repository.deleteChauffeur(id);
+    }
+
+    public byte[] findChauffeurImage(int id){
+        return repository.findChauffeurImage(id);
     }
 
 }

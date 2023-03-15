@@ -1,10 +1,9 @@
 package sr.unasat.entity;
 
-import jakarta.persistence.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Bestelling {
@@ -12,16 +11,15 @@ public class Bestelling {
     @GeneratedValue
     private int id;
 
-    private LocalDate bestellingDatum;
+    private String bestellingDatum;
 
-    @Temporal(TemporalType.DATE)
-    private Calendar leveringDatum;
+    private String leveringDatum;
 
     @ManyToOne
     private Klant klant;
 
-    @OneToMany(mappedBy = "bestelling")
-    private List<BestellingProduct> producten = new ArrayList<>();
+//    @OneToMany(mappedBy = "bestelling")
+//    private List<BestellingProduct> producten = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -39,29 +37,29 @@ public class Bestelling {
         this.klant = klant;
     }
 
-    public Calendar getLeveringDatum() {
+    public String getLeveringDatum() {
         return leveringDatum;
     }
 
-    public void setLeveringDatum(Calendar leveringDatum) {
+    public void setLeveringDatum(String leveringDatum) {
         this.leveringDatum = leveringDatum;
     }
 
-    public LocalDate getBestellingDatum() {
+    public String getBestellingDatum() {
         return bestellingDatum;
     }
 
-    public void setBestellingDatum(LocalDate bestellingDatum) {
+    public void setBestellingDatum(String bestellingDatum) {
         this.bestellingDatum = bestellingDatum;
     }
 
-    public List<BestellingProduct> getProducten() {
-        return producten;
-    }
-
-    public void setProducten(List<BestellingProduct> producten) {
-        this.producten = producten;
-    }
+//    public List<BestellingProduct> getProducten() {
+//        return producten;
+//    }
+//
+//    public void setProducten(List<BestellingProduct> producten) {
+//        this.producten = producten;
+//    }
 
     @Override
     public String toString() {

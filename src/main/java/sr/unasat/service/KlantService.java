@@ -25,6 +25,9 @@ public class KlantService {
     public Klant createKlant(String voornaam, String achternaam, String adres, String telefoon) {
         return repository.createKlant(voornaam, achternaam, adres, telefoon);
     }
+    public Klant createKlant(Klant klant) {
+        return repository.createKlant(klant);
+    }
 
     public Klant findKlantByName(String voorNaam, String achterNaam) {
         return repository.findOneKlant(voorNaam, achterNaam);
@@ -34,16 +37,16 @@ public class KlantService {
         return repository.findKlantByid(id);
     }
 
-    public void updateNaam(int id, String voornaam, String achternaam) {
-        repository.updateNaam(id, voornaam, achternaam);
+    public Klant updateNaam(int id, String voornaam, String achternaam) {
+        return repository.updateNaam(id, voornaam, achternaam);
     }
 
-    public void updateTelefoon(int id, String telefoon) {
-        repository.updateTelefoon(id, telefoon);
+    public Klant updateTelefoon(int id, String telefoon) {
+        return repository.updateTelefoon(id, telefoon);
     }
 
-    public void updateAdres(int id, String adres) {
-        repository.updateAdres(id, adres);
+    public Klant updateAdres(int id, String adres) {
+         return repository.updateAdres(id, adres);
     }
 
     public void deleteKlant(int id) {

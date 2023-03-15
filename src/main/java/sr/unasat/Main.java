@@ -1,6 +1,17 @@
 package sr.unasat;
 
-import sr.unasat.service.ChauffeurService;
+import sr.unasat.mapper.ProductDTOMapper;
+import sr.unasat.service.BestellingProductService;
+import sr.unasat.service.BestellingService;
+import sr.unasat.service.KlantService;
+import sr.unasat.service.ProductService;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class Main {
 //html, in index, add producten. hardcoden maar met index werken als dat kan.
@@ -32,42 +43,54 @@ public class Main {
 //    }
 
 
-//    public static Image readImg(byte[] photo) {
-//        InputStream inputStream = new ByteArrayInputStream(photo);
-//        Image img;
-//        {
-//            try {
-//                img = ImageIO.read(inputStream);
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
-//        return img;
-//    }
-
-//    public static void displayImg(Image img) {
-//        JLabel label = new JLabel(new ImageIcon(img));
-//        JFrame frame = new JFrame();
-//        frame.getContentPane().add(label);
-//        frame.pack();
-//        frame.setVisible(true);
-//    }
-
-    public static void main(String[] args) {
-
-//        KlantService ks = new KlantService();
-//        ks.createKlant("jane", "hendriks", "anaWeg 34", "8893257");
-
-
-//        KlantDTOMapper klantDTOMapper = new KlantDTOMapper();
-//        KlantService klantService = new KlantService();
-
-        ChauffeurService chauffeurService = new ChauffeurService();
-
-        chauffeurService.createChauffeur("Jake", "Bord", "8734562", "C:\\Users\\Migue\\Documents\\GitHub\\logistiekWebApp\\src\\main\\webapp\\images\\person_1.jpg");
-        chauffeurService.createChauffeur("Mark", "Xander", "8734562", "C:\\Users\\Migue\\Documents\\GitHub\\logistiekWebApp\\src\\main\\webapp\\images\\person_3.jpg");
-        chauffeurService.createChauffeur("Wendy", "Bendy", "7102358", "C:\\Users\\Migue\\Documents\\GitHub\\logistiekWebApp\\src\\main\\webapp\\images\\person-1.jpg");
-        chauffeurService.createChauffeur("Lisa", "Borger", "7160732", "C:\\Users\\Migue\\Documents\\GitHub\\logistiekWebApp\\src\\main\\webapp\\images\\person_4.jpg");
+    public static Image readImg(byte[] photo) {
+        InputStream inputStream = new ByteArrayInputStream(photo);
+        Image img;
+        {
+            try {
+                img = ImageIO.read(inputStream);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return img;
     }
 
+    public static void displayImg(Image img) {
+        JLabel label = new JLabel(new ImageIcon(img));
+        JFrame frame = new JFrame();
+        frame.getContentPane().add(label);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        ProductDTOMapper productDTOMapper = new ProductDTOMapper();
+        ProductService productService = new ProductService(productDTOMapper);
+        BestellingService bestellingService = new BestellingService();
+        KlantService klantService = new KlantService();
+//        productService.createProduct("Bluestone", 50, "Henkilaan2", "C:\\Users\\Migue\\Documents\\GitHub\\logistiekWebApp\\src\\main\\webapp\\images\\Bluestone.jpg");
+//        productService.createProduct("White Sand", 100, "Henkilaan2", "C:\\Users\\Migue\\Documents\\GitHub\\logistiekWebApp\\src\\main\\webapp\\images\\White_Sand_SML.jpg");
+
+
+//        klantService.createKlant("Henk", "Blaad", "vergeetmenietstraat", "889235");
+//        bestellingService.createBestelling(1, 2023, 3, 18);
+//        bestellingService.deleteBestelling(1);
+
+        BestellingProductService bestellingProductService = new BestellingProductService();
+
+//        List<String> product = new ArrayList<>();
+//        List<Integer> am = new ArrayList<>();
+//        product.add("Bluestone");
+//        am.add(5);
+//
+//        bestellingProductService.createBestellingProduct(bestellingService.findBestellingById(1), product, am);
+
+//        System.out.println(bestellingProductService.findBestellingProductByid(1));
+//        bestellingProductService.updateBestellingProduct(2, "Bluestone", 2);
+
+//        bestellingService.deleteBestelling(52);
+//        bestellingProductService.deleteBestellingProduct(52);
+
+    }
 }

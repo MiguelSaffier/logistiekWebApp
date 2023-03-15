@@ -1,9 +1,8 @@
 package sr.unasat.controller;
 
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import sr.unasat.entity.Klant;
 import sr.unasat.service.KlantService;
 
@@ -22,42 +21,87 @@ public class KlantController {
     }
 
 
-//    @Path("/add")
-//    @POST
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public DierDto add(DierDto dierDto) { return dierService.createDier(dierDto);
-//    }
+    @Path("/add")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Klant add(Klant klant) {
+        return klantService.createKlant(klant);
+    }
 
-    //    @Path("/remove")
-//    @DELETE
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public int remove(Long lidmaatschapId) {
-//        return dierService.deleteDier(lidmaatschapId);
-//    }
+    @Path("/remove/{id}")
+    @DELETE
+    public Response remove(@PathParam("id") int id) {
+        klantService.deleteKlant(id);
+        return Response.noContent().build();
+    }
 
 
-    //    @Path("/update")
-//    @PUT
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public DierDto update(DierDto dierDto) { return dierService.updateDier(dierDto);
-//    }
+    @Path("/updateName")
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateName(@QueryParam("id") int id,
+                           @QueryParam("firstName") String firstName,
+                           @QueryParam("lastName") String lastName) {
+       Klant klant =  klantService.updateNaam(id, firstName, lastName);
+        if (klant == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.ok(klant).build();
+        }
+    }
 
-    //    @Path("/find")
-//    @POST
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public DierDto findDier(DierDto dierDto) {
-//        return dierService.findDierById(dierDto.getId());
-//    }
-//
-//    @Path("/find-dieren-owner")
-//    @POST
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<DierDto> findDierenOfLid(Long lidId){
-//        return dierService.findDierenOfOwnerByOwnerId(lidId);
-//    }
+    @Path("/updatePhone")
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updatePhone(@QueryParam("id") int id,
+                           @QueryParam("phoneNumber") String phoneNumber) {
+        Klant klant =  klantService.updateTelefoon(id, phoneNumber);
+        if (klant == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.ok(klant).build();
+        }
+    }
+
+    @Path("/updateAdres")
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateAdres(@QueryParam("id") int id,
+                           @QueryParam("adres") String adres) {
+        Klant klant =  klantService.updateAdres(id, adres);
+        if (klant == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.ok(klant).build();
+        }
+    }
+
+    @Path("/find/{id}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findKlantById(@PathParam("id") int id) {
+        Klant klant = klantService.findKlantByid(id);
+        if (klant == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.ok(klant).build();
+        }
+    }
+
+
+    @Path("/findByName")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUserByFullName(@QueryParam("firstName") String firstName,
+                                      @QueryParam("lastName") String lastName) {
+        Klant klant = klantService.findKlantByName(firstName, lastName);
+        if (klant == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.ok(klant).build();
+        }
+    }
+
 
 }

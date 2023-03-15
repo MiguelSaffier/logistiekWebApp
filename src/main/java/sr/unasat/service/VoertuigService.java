@@ -18,8 +18,12 @@ public class VoertuigService {
         return repository.getVoertuig(type);
     }
 
-    public void createVoertuig(String voertuigType, String merk, int capaciteit, String kentekenNummer) {
-        repository.createVoertuig(voertuigType, merk, capaciteit, kentekenNummer);
+    public Voertuig createVoertuig(String voertuigType, String merk, int capaciteit, String kentekenNummer) {
+        return repository.createVoertuig(voertuigType, merk, capaciteit, kentekenNummer);
+    }
+
+    public Voertuig createVoertuig(String voertuigType, Voertuig voertuig) {
+        return repository.createVoertuig(voertuigType, voertuig);
     }
 
     public Voertuig findVoertuigById(int id){

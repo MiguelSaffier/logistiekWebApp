@@ -22,16 +22,16 @@ public class LeveringService {
         return repository.createLevering(bestellingId);
     }
 
-    public void findLeveringById(int id) {
-        repository.findOneLeveringById(id);
+    public List<Levering> findLeveringById(int id) {
+        return repository.findLeveringById(id);
     }
 
-    public void updateLeveringStatus(int id, String status) {
-        repository.updateStatus(id, status);
+    public Levering updateLeveringStatus(int id, String status) {
+        return repository.updateStatus(id, status);
     }
 
-    public void updateTotaleKosten(int id, double totaleKosten) {
-        repository.updateTotaleKosten(id, totaleKosten);
+    public Levering updateTotaleKosten(int id, double totaleKosten) {
+        return repository.updateTotaleKosten(id, totaleKosten);
     }
 
     public void deleteLevering(int id) {
