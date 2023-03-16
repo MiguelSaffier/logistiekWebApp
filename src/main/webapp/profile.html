@@ -6,8 +6,8 @@
     <meta name="author" content="Untree.co">
     <link rel="shortcut icon" href="favicon.png">
 
-    <meta name="description" content="" />
-    <meta name="keywords" content="bootstrap, bootstrap4" />
+    <meta name="description" content=""/>
+    <meta name="keywords" content="bootstrap, bootstrap4"/>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -22,7 +22,8 @@
     <div class="container">
         <a class="navbar-brand" href="index.html">Lalsen<span>.</span></a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
+                aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -37,54 +38,86 @@
             </ul>
 
             <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-                <li><a class="nav-link" href="sign_in.html"><img src="images/user.svg"></a></li>
+                <li><a class="nav-link" href="profile.html"><img src="images/user.svg"></a></li>
                 <li><a class="nav-link" href="cart.html"><img src="images/cart.svg"></a></li>
             </ul>
         </div>
     </div>
-
 </nav>
 
 
+<div class="container" style="color: white; background-color: #2aa15f">
+    <div class="text-center">
+        <h1 class="display-5 mb-5"><strong>Profile</strong></h1>
+    </div>
+    <div class="main row justify-content-center">
+        <form action="" id="profile-form" class="row justify-content-center mb-4" autocomplete="off">
+            <div class="col-7 mb-3">
+                <label for="firstName">First Name</label>
+                <input class="form-control" id="firstName" type="text" placeholder="First Name" readonly>
+            </div>
+            <div class="col-7 mb-3">
+                <label for="lastName">Last Name</label>
+                <input class="form-control" id="lastName" type="text" placeholder="Last Name" readonly>
+            </div>
+            <div class="col-7 mb-3">
+                <label for="adres">Adress</label>
+                <input class="form-control" id="adres" type="text" placeholder="Adress" readonly>
+            </div>
+            <div class="col-7 mb-3">
+                <label for="phoneNumber">Phone Number</label>
+                <input class="form-control" id="phoneNumber" type="text" placeholder="Phone Number" readonly>
+            </div>
+            <div class="col-7">
+                <a href="sign_in.html">
+                    <input type="button" value="Sign In" class="btn btn-outline-success">
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
 
 
+<!--<div id="data-container"></div>-->
+<!--&lt;!&ndash;<p>loaddata(1).id</p>&ndash;&gt;-->
 
-<div id="data-container"></div>
-<!--<p>loaddata(1).id</p>-->
+<!--<script>-->
+<!--   let data = function loadData() {-->
+<!--        const id = 1;-->
+<!--        fetch(`http://localhost:8080/logistiekWebApp_war_exploded/api/product/find/${id}`)-->
+<!--            .then(response => response.json())-->
+<!--            .then(data => {-->
+<!--                const container = document.getElementById('data-container');-->
+<!--                container.innerHTML = `-->
+<!--          <h1>${data.id}</h1>-->
+<!--          <p>${data.naam}</p>-->
+<!--          <p>${data.prijs}</p>-->
+<!--          <p>${data.adres}</p>-->
+<!--          <img src="${data.image}" alt="Profile Picture">-->
+<!--        `;-->
+<!--            })-->
+<!--            .catch(error => console.error(error));-->
+<!--    }-->
+<!--    // Call the loadData function when the page loads-->
+<!--    window.onload = loadData;-->
+<!--</script>-->
 
-<script>
-   let data = function loadData() {
-        const id = 1;
-        fetch(`http://localhost:8080/logistiekWebApp_war_exploded/api/product/find/${id}`)
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('data-container');
-                container.innerHTML = `
-          <h1>${data.id}</h1>
-          <p>${data.naam}</p>
-          <p>${data.prijs}</p>
-          <p>${data.adres}</p>
-          <img src="${data.image}" alt="Profile Picture">
-        `;
-            })
-            .catch(error => console.error(error));
-    }
-    // Call the loadData function when the page loads
-    window.onload = loadData;
-</script>
 
 <!-- Start Footer Section -->
 <footer class="footer-section">
     <div class="container relative">
 
-<!--        <div class="sofa-img">-->
-<!--            <img src="images/truck.png" alt="Image" class="img-fluid">-->
-<!--        </div>-->
+        <!--        <div class="sofa-img">-->
+        <!--            <img src="images/truck.png" alt="Image" class="img-fluid">-->
+        <!--        </div>-->
 
         <div class="row">
             <div class="col-lg-8">
                 <div class="subscription-form">
-                    <h3 class="d-flex align-items-center"><span class="me-1"><img src="images/envelope-outline.svg" alt="Image" class="img-fluid"></span><span>Subscribe to Newsletter</span></h3>
+                    <h3 class="d-flex align-items-center"><span class="me-1"><img src="images/envelope-outline.svg"
+                                                                                  alt="Image"
+                                                                                  class="img-fluid"></span><span>Subscribe to Newsletter</span>
+                    </h3>
 
                     <form action="#" class="row g-3">
                         <div class="col-auto">
@@ -106,14 +139,19 @@
 
         <div class="row g-5 mb-5">
             <div class="col-lg-4">
-                <div class="mb-4 footer-logo-wrap"><a href="index.html" class="footer-logo">Lalsen<span>.</span></a></div>
-                <p class="mb-4">Give us a try any save up to 10% from traditional Shopping. Regardless, we wish you happy building.  </p>
+                <div class="mb-4 footer-logo-wrap"><a href="index.html" class="footer-logo">Lalsen<span>.</span></a>
+                </div>
+                <p class="mb-4">Give us a try any save up to 10% from traditional Shopping. Regardless, we wish you
+                    happy building. </p>
 
                 <ul class="list-unstyled custom-social">
-                    <li><a href="https://www.facebook.com/miguelsaffier.lachman/"><span class="fa fa-brands fa-facebook-f"></span></a></li>
+                    <li><a href="https://www.facebook.com/miguelsaffier.lachman/"><span
+                            class="fa fa-brands fa-facebook-f"></span></a></li>
                     <!--							<li><a href="#"><span class="fa fa-brands fa-twitter"></span></a></li>-->
-                    <li><a href="https://instagram.com/miguelsaffier?igshid=ZDdkNTZiNTM="><span class="fa fa-brands fa-instagram"></span></a></li>
-                    <li><a href="https://www.linkedin.com/in/miguel-saffier-6a2b9823b/?originalSubdomain=sr"><span class="fa fa-brands fa-linkedin"></span></a></li>
+                    <li><a href="https://instagram.com/miguelsaffier?igshid=ZDdkNTZiNTM="><span
+                            class="fa fa-brands fa-instagram"></span></a></li>
+                    <li><a href="https://www.linkedin.com/in/miguel-saffier-6a2b9823b/?originalSubdomain=sr"><span
+                            class="fa fa-brands fa-linkedin"></span></a></li>
                 </ul>
             </div>
 
@@ -152,7 +190,9 @@
         <div class="border-top copyright">
             <div class="row pt-4">
                 <div class="col-lg-6">
-                    <p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a> <!-- License information: https://untree.co/license/ -->
+                    <p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                        . All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a>
+                        <!-- License information: https://untree.co/license/ -->
                     </p>
                     <p>Heavily edited by Miguel Lachman</p>
                 </div>
@@ -170,15 +210,6 @@
     </div>
 </footer>
 <!-- End Footer Section -->
-
-
-
-
-
-
-
-
-
 
 
 <script src="js/bootstrap.bundle.min.js"></script>

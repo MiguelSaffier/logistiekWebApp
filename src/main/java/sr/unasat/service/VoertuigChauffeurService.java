@@ -23,4 +23,20 @@ public class VoertuigChauffeurService {
         return repository.getVoertuigChauffeur(levering);
     }
 
+    public List<VoertuigChauffeur> getVoertuigChauffeurDetail(){
+        return repository.getVoertuigChauffeurDetail();
+    }
+
+    public List<VoertuigChauffeur> findVoertuigChauffeur(int id){
+        return repository.findVoertuigChauffeur(id);
+    }
+
+    public void deleteVoertuigChauffeur(int id){
+        repository.deleteVoertuigChauffeur(id);
+    }
+
+    public VoertuigChauffeur updateLeveringskosten(int id, double kosten) {
+        return repository.updateLeveringskosten(id, kosten);
+    }
+
 }

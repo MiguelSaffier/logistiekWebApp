@@ -32,7 +32,9 @@ public class LeveringStrategy {
 
     public static List<VrachtWagen> setJuisteVoertuig(int bestellingId) {
         BestellingProductService bps = new BestellingProductService();
+        bs = new BestellingService();
         vs = new VoertuigService();
+        b = new Bestelling();
         List<Voertuig> voertuigList = new ArrayList<>(vs.getAllVoertuig("vrachtwagen"));
         List<VrachtWagen> vrachtWagenList = new ArrayList<>();
         b = bs.findBestellingById(bestellingId);
@@ -81,9 +83,11 @@ public class LeveringStrategy {
 
     public static double setKosten(int bestellingId, Levering levering) {
         BestellingProductService bps = new BestellingProductService();
+        b = new Bestelling();
         bs = new BestellingService();
         b = bs.findBestellingById(bestellingId);
         VoertuigChauffeurService voertuigChauffeurService = new VoertuigChauffeurService();
+        int size = voertuigChauffeurService.getVoertuigChauffeur(levering).size();
 
         double totaleKosten = 0;
         for (int i = 0; i < bps.getBestellingProduct(b).size(); i++) {
@@ -92,7 +96,7 @@ public class LeveringStrategy {
             totaleKosten += (amount * prijs);
         }
 
-        for (int i = 0; i < voertuigChauffeurService.getVoertuigChauffeur(levering).size(); i++) {
+        for (int i = 0; i < size; i++) {
             double leveringsKosten = voertuigChauffeurService.getVoertuigChauffeur(levering).get(i).getLeveringskosten();
             totaleKosten += leveringsKosten;
         }

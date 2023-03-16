@@ -5,6 +5,7 @@ import sr.unasat.entity.Levering;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import sr.unasat.service.LeveringService;
+import sr.unasat.service.VoertuigChauffeurService;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
 public class LeveringController {
 
     LeveringService leveringService = new LeveringService();
+    VoertuigChauffeurService voertuigChauffeurService = new VoertuigChauffeurService();
 
     @Path("/get_leveringen")
     @GET
@@ -22,7 +24,7 @@ public class LeveringController {
 
     @Path("/add/{id}")
     @POST
-    @Produces(MediaType.APPLICATION_JSON)                       //eerst voertuigchauffeur aanmaken dan levering
+    @Produces(MediaType.APPLICATION_JSON)
     public Levering add(@PathParam("id") int id) {
         return leveringService.createLevering(id);
     }
@@ -30,9 +32,9 @@ public class LeveringController {
     @Path("/remove/{id}")
     @DELETE
     public Response remove(@PathParam("id") int id) {
+        voertuigChauffeurService.deleteVoertuigChauffeur(id);
         leveringService.deleteLevering(id);
         return Response.noContent().build();
-
     }
 
 

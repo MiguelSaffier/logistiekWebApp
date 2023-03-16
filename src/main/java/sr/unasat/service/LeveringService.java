@@ -26,6 +26,10 @@ public class LeveringService {
         return repository.findLeveringById(id);
     }
 
+    public Levering findOneLeveringById(int id) {
+        return repository.findOneLeveringById(id);
+    }
+
     public Levering updateLeveringStatus(int id, String status) {
         return repository.updateStatus(id, status);
     }

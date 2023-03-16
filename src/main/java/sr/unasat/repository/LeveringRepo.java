@@ -85,7 +85,7 @@ public class LeveringRepo {
 
     }
 
-    private Levering findOneLeveringById(int id){
+    public Levering findOneLeveringById(int id){
             Levering levering = entityManager.find(Levering.class, id);
         if (levering == null) {
             throw new EntityNotFoundException("Can't find levering for ID "

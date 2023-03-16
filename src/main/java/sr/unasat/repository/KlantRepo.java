@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+
 import java.util.List;
 
 public class KlantRepo {
@@ -22,13 +23,12 @@ public class KlantRepo {
         return typedQuery.getResultList();
     }
 
-    public Klant createKlant(Klant klant){
+    public Klant createKlant(Klant klant) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(klant);
             entityManager.getTransaction().commit();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
@@ -36,7 +36,7 @@ public class KlantRepo {
         return klant;
     }
 
-    public Klant createKlant(String voornaam, String achternaam, String adres, String telefoon){
+    public Klant createKlant(String voornaam, String achternaam, String adres, String telefoon) {
         klant = new Klant();
         klant.setVoornaam(voornaam);
         klant.setAchternaam(achternaam);
@@ -46,7 +46,7 @@ public class KlantRepo {
     }
 
     public Klant findOneKlant(String voorNaam, String achterNaam) {
-        try{
+        try {
             entityManager.getTransaction().begin();
             String findKlantName = "select k from Klant k where k.voornaam = :voorNaam and k.achternaam = :achterNaam";
             Query query = entityManager.createQuery(findKlantName);
@@ -54,24 +54,24 @@ public class KlantRepo {
             query.setParameter("achterNaam", achterNaam);
             Object singleResult = query.getSingleResult();
             entityManager.getTransaction().commit();
-            return (sr.unasat.entity.Klant) singleResult;}
-        catch (Exception e){
+            return (sr.unasat.entity.Klant) singleResult;
+        } catch (Exception e) {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
         return null;
     }
 
-    public Klant findKlantByid(int id){
-            Klant klant = entityManager.find(Klant.class, id);
+    public Klant findKlantByid(int id) {
+        Klant klant = entityManager.find(Klant.class, id);
         if (klant == null) {
             throw new EntityNotFoundException("Can't find klant for ID "
                     + id);
         }
-            return klant;
+        return klant;
     }
 
-    public Klant updateNaam(int id, String voorNaam, String achterNaam){
+    public Klant updateNaam(int id, String voorNaam, String achterNaam) {
         try {
             entityManager.getTransaction().begin();
             klant = findKlantByid(id);
@@ -86,7 +86,7 @@ public class KlantRepo {
         return klant;
     }
 
-    public Klant updateTelefoon(int id, String telefoonNummer){
+    public Klant updateTelefoon(int id, String telefoonNummer) {
         try {
             entityManager.getTransaction().begin();
             klant = findKlantByid(id);
@@ -100,7 +100,7 @@ public class KlantRepo {
         return klant;
     }
 
-    public Klant updateAdres(int id, String adres){
+    public Klant updateAdres(int id, String adres) {
         try {
             entityManager.getTransaction().begin();
             klant = findKlantByid(id);
@@ -114,7 +114,7 @@ public class KlantRepo {
         return klant;
     }
 
-    public void deleteKlant(int id){
+    public void deleteKlant(int id) {
         try {
             entityManager.getTransaction().begin();
             klant = findKlantByid(id);
@@ -125,7 +125,6 @@ public class KlantRepo {
             entityManager.getTransaction().rollback();
         }
     }
-
 
 
 }
