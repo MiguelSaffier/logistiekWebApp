@@ -53,20 +53,20 @@
     <div class="main row justify-content-center">
         <form action="" id="profile-form" class="row justify-content-center mb-4" autocomplete="off">
             <div class="col-7 mb-3">
-                <label for="firstName">First Name</label>
-                <input class="form-control" id="firstName" type="text" placeholder="First Name" readonly>
+                <label for="firstNamep">First Name</label>
+                <input class="form-control" id="firstNamep" type="text" placeholder="First Name" readonly>
             </div>
             <div class="col-7 mb-3">
-                <label for="lastName">Last Name</label>
-                <input class="form-control" id="lastName" type="text" placeholder="Last Name" readonly>
+                <label for="lastNamep">Last Name</label>
+                <input class="form-control" id="lastNamep" type="text" placeholder="Last Name" readonly>
             </div>
             <div class="col-7 mb-3">
-                <label for="adres">Adress</label>
-                <input class="form-control" id="adres" type="text" placeholder="Adress" readonly>
+                <label for="adresp">Adress</label>
+                <input class="form-control" id="adresp" type="text" placeholder="Adress" readonly>
             </div>
             <div class="col-7 mb-3">
-                <label for="phoneNumber">Phone Number</label>
-                <input class="form-control" id="phoneNumber" type="text" placeholder="Phone Number" readonly>
+                <label for="phoneNumberp">Phone Number</label>
+                <input class="form-control" id="phoneNumberp" type="text" placeholder="Phone Number" readonly>
             </div>
             <div class="col-7">
                 <a href="sign_in.html">
@@ -77,39 +77,11 @@
     </div>
 </div>
 
-
-<!--<div id="data-container"></div>-->
-<!--&lt;!&ndash;<p>loaddata(1).id</p>&ndash;&gt;-->
-
-<!--<script>-->
-<!--   let data = function loadData() {-->
-<!--        const id = 1;-->
-<!--        fetch(`http://localhost:8080/logistiekWebApp_war_exploded/api/product/find/${id}`)-->
-<!--            .then(response => response.json())-->
-<!--            .then(data => {-->
-<!--                const container = document.getElementById('data-container');-->
-<!--                container.innerHTML = `-->
-<!--          <h1>${data.id}</h1>-->
-<!--          <p>${data.naam}</p>-->
-<!--          <p>${data.prijs}</p>-->
-<!--          <p>${data.adres}</p>-->
-<!--          <img src="${data.image}" alt="Profile Picture">-->
-<!--        `;-->
-<!--            })-->
-<!--            .catch(error => console.error(error));-->
-<!--    }-->
-<!--    // Call the loadData function when the page loads-->
-<!--    window.onload = loadData;-->
-<!--</script>-->
-
+<!--<script>document.getElementById("firstNamep").value = "John";</script>-->
 
 <!-- Start Footer Section -->
 <footer class="footer-section">
     <div class="container relative">
-
-        <!--        <div class="sofa-img">-->
-        <!--            <img src="images/truck.png" alt="Image" class="img-fluid">-->
-        <!--        </div>-->
 
         <div class="row">
             <div class="col-lg-8">
@@ -215,7 +187,7 @@
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/tiny-slider.js"></script>
 <script src="js/custom.js"></script>
-<script src="js/klant.js"></script>
+<script src="js/signin_up.js"></script>
 </body>
 
 </html>
