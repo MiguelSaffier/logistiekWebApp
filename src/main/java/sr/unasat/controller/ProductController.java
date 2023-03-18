@@ -31,13 +31,24 @@ public class ProductController {
     }
 
 
+//    @Path("/add")
+//    @POST
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Product add(Product product){
+//        return productService.createProduct(product);
+//    }
+
     @Path("/add")
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Product add(Product product){
-        return productService.createProduct(product);
+    public Product add(@FormParam("naam") String naam,
+                       @FormParam("prijs") double prijs,
+                       @FormParam("adres") String adres,
+                       @FormParam("image") String image) {
+        return productService.createProduct(naam, prijs, adres, image);
     }
+
 
     @Path("/remove/{id}")
     @DELETE
@@ -51,7 +62,7 @@ public class ProductController {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     public Response updatePrice(@QueryParam("id") int id,
-                               @QueryParam("price") double price) {
+                                @QueryParam("price") double price) {
         Product product = productService.updatePrijs(id, price);
         if (product == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -77,8 +88,8 @@ public class ProductController {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateAdres(@QueryParam("id") int id,
-                               @QueryParam("adres") String adres) {
-        Product product = productService.updateAdres(id, adres );
+                                @QueryParam("adres") String adres) {
+        Product product = productService.updateAdres(id, adres);
         if (product == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {
@@ -110,5 +121,22 @@ public class ProductController {
             return Response.ok(product).build();
         }
     }
+
+    @Path("/update")
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response update(@FormParam("id") int id,
+                           @FormParam("naam") String naam,
+                           @FormParam("prijs") double prijs,
+                           @FormParam("adres") String adres,
+                           @FormParam("image") String image) {
+        Product product = productService.updateProduct(id, naam, prijs, adres, image);
+        if (product == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.ok(product).build();
+        }
+    }
+
 
 }

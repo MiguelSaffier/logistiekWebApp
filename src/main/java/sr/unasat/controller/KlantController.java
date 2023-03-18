@@ -23,11 +23,21 @@ public class KlantController {
 
     @Path("/add")
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Klant add(Klant klant) {
-        return klantService.createKlant(klant);
+    public Klant add(@FormParam("firstName") String firstName,
+                     @FormParam("lastName") String lastName,
+                     @FormParam("address") String address,
+                     @FormParam("phoneNumber") String phoneNumber) {
+        return klantService.createKlant(firstName, lastName, address, phoneNumber);
     }
+
+//    @Path("/add")
+//    @POST
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Klant add(Klant klant) {
+//        return klantService.createKlant(klant);
+//    }
 
     @Path("/remove/{id}")
     @DELETE
@@ -36,14 +46,29 @@ public class KlantController {
         return Response.noContent().build();
     }
 
+    @Path("/update")
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateKlant(@FormParam("id") int id,
+                                @FormParam("firstName") String firstName,
+                                @FormParam("lastName") String lastName,
+                                @FormParam("address") String address,
+                                @FormParam("phoneNumber") String phoneNumber) {
+        Klant klant = klantService.updateKlant(id, firstName, lastName, address, phoneNumber);
+        if (klant == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.ok(klant).build();
+        }
+    }
 
     @Path("/updateName")
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateName(@QueryParam("id") int id,
-                           @QueryParam("firstName") String firstName,
-                           @QueryParam("lastName") String lastName) {
-       Klant klant =  klantService.updateNaam(id, firstName, lastName);
+                               @QueryParam("firstName") String firstName,
+                               @QueryParam("lastName") String lastName) {
+        Klant klant = klantService.updateNaam(id, firstName, lastName);
         if (klant == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {
@@ -55,8 +80,8 @@ public class KlantController {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     public Response updatePhone(@QueryParam("id") int id,
-                           @QueryParam("phoneNumber") String phoneNumber) {
-        Klant klant =  klantService.updateTelefoon(id, phoneNumber);
+                                @QueryParam("phoneNumber") String phoneNumber) {
+        Klant klant = klantService.updateTelefoon(id, phoneNumber);
         if (klant == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {
@@ -68,8 +93,8 @@ public class KlantController {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateAdres(@QueryParam("id") int id,
-                           @QueryParam("adres") String adres) {
-        Klant klant =  klantService.updateAdres(id, adres);
+                                @QueryParam("adres") String adres) {
+        Klant klant = klantService.updateAdres(id, adres);
         if (klant == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {

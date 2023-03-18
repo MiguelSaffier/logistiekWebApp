@@ -78,7 +78,7 @@ public class ChauffeurRepo {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
-        return null;
+        return chauffeur;
     }
 
     public Chauffeur updateTelefoon(int id, String telefoonNummer) {
@@ -92,7 +92,7 @@ public class ChauffeurRepo {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
-        return null;
+        return chauffeur;
     }
 
     public void deleteChauffeur(int id) {
@@ -105,6 +105,23 @@ public class ChauffeurRepo {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
+    }
+
+    public Chauffeur updateChauffeur(int id, String voornaam, String achternaam, String telefoon, String imagePath) {
+        try {
+            entityManager.getTransaction().begin();
+            chauffeur = findChauffeurById(id);
+            chauffeur.setVoornaam(voornaam);
+            chauffeur.setAchternaam(achternaam);
+            chauffeur.setTelefoon(telefoon);
+            chauffeur.setImage(imagePath);
+            entityManager.persist(chauffeur);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+        return chauffeur;
     }
 
 }

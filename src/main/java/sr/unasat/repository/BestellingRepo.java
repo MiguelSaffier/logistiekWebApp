@@ -28,7 +28,7 @@ public class BestellingRepo {
     }
 
     public List<Bestelling> getBestellingDetail(){
-        String findBestelling = "select b.id, b.bestellingDatum, k.id, k.voornaam, k.achternaam, b.leveringDatum, k.telefoon from Bestelling b inner join Klant k on b.klant.id = k.id";
+        String findBestelling = "select b.id as id, b.bestellingDatum as bestellingDatum, k.id, k.voornaam, k.achternaam, b.leveringDatum, k.telefoon from Bestelling b inner join Klant k on b.klant.id = k.id";
         Query query = entityManager.createQuery(findBestelling);
         Object singleResult = query.getResultList();
         return (List<Bestelling>) singleResult;
@@ -91,8 +91,27 @@ public class BestellingRepo {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
-        return null;
+        return bestelling;
     }
+
+    public Bestelling updateBestelling(int bestellingId, int klantId, int jaar, int maand, int dag) {
+        KlantService ks = new KlantService();
+        try {
+            entityManager.getTransaction().begin();
+            bestelling = findOneBestelling(bestellingId);
+            bestelling.setKlant(ks.findKlantByid(klantId));
+            DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
+            bestelling.setLeveringDatum(LocalDate.of(jaar, maand, dag).format(formatter));
+            entityManager.persist(bestelling);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+        return bestelling;
+    }
+
+
 
     public void deleteBestelling(int id) {
         try {
@@ -105,5 +124,6 @@ public class BestellingRepo {
             entityManager.getTransaction().rollback();
         }
     }
+
 
 }

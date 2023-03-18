@@ -67,4 +67,8 @@ public class ProductService {
         return repository.updateImage(id, imagePath);
     }
 
+    public Product updateProduct(int id, String naam, double prijs, String adres, String imagePath) {
+        return repository.updateProduct(id, naam, prijs, adres, imagePath);
+    }
+
 }

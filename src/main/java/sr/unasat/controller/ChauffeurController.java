@@ -29,13 +29,24 @@ public class ChauffeurController {
         return chauffeurService.findChauffeurImage(id);
     }
 
+//    @Path("/add")
+//    @POST
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Chauffeur add(Chauffeur chauffeur) {
+//        return chauffeurService.createChauffeur(chauffeur);
+//    }
+
     @Path("/add")
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Chauffeur add(Chauffeur chauffeur) {
-        return chauffeurService.createChauffeur(chauffeur);
+    public Chauffeur add(@FormParam("voornaam") String voornaam,
+                         @FormParam("achternaam") String achternaam,
+                         @FormParam("telefoon") String telefoon,
+                         @FormParam("image") String image) {
+        return chauffeurService.createChauffeur(voornaam, achternaam, telefoon, image);
     }
+
 
     @Path("/remove/{id}")
     @DELETE
@@ -72,6 +83,22 @@ public class ChauffeurController {
         }
     }
 
+    @Path("/update")
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response update(@FormParam("id") int id,
+                           @FormParam("voornaam") String voornaam,
+                           @FormParam("achternaam") String achternaam,
+                           @FormParam("telefoon") String telefoon,
+                           @FormParam("image") String image) {
+        Chauffeur chauffeur = chauffeurService.updateChauffeur(id, voornaam, achternaam, telefoon, image);
+        if (chauffeur == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.ok(chauffeur).build();
+        }
+    }
+
 
     @Path("/find/{id}")
     @GET
@@ -89,7 +116,7 @@ public class ChauffeurController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getChauffeurByFullName(@QueryParam("firstName") String firstName,
-                                      @QueryParam("lastName") String lastName) {
+                                           @QueryParam("lastName") String lastName) {
         Chauffeur chauffeur = chauffeurService.findChauffeurByName(firstName, lastName);
         if (chauffeur == null) {
             return Response.status(Response.Status.NOT_FOUND).build();

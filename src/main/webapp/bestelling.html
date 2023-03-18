@@ -24,26 +24,22 @@
         <h1 class="display-5 mb-5"><strong>BESTELLING</strong></h1>
     </div>
     <div class="main row justify-content-center">
-        <form action="" id="add-klant-form" class="row justify-content-center mb-4" autocomplete="off">
+        <form action="http://localhost:8080/logistiekWebApp_war_exploded/api/bestelling/add" id="add-bestelling-form" class="row justify-content-center mb-4" autocomplete="off" method="post">
             <div class="col-7 mb-3">
-                <label for="id">First Name</label>
+                <label for="id">Klant Id</label>
                 <input class="form-control" id="id" type="number" placeholder="Klant Id">
             </div>
             <div class="col-7 mb-3">
-                <label for="firstName">First Name</label>
-                <input class="form-control" id="firstName" type="text" placeholder="First Name">
+                <label for="year">Year</label>
+                <input class="form-control" id="year" type="text" placeholder="Year">
             </div>
             <div class="col-7 mb-3">
-                <label for="lastName">Last Name</label>
-                <input class="form-control" id="lastName" type="text" placeholder="Last Name">
+                <label for="month">Month</label>
+                <input class="form-control" id="month" type="text" placeholder="Month">
             </div>
             <div class="col-7 mb-3">
-                <label for="address">Adress</label>
-                <input class="form-control" id="address" type="text" placeholder="Address">
-            </div>
-            <div class="col-7 mb-3">
-                <label for="phoneNumber">Phone Number</label>
-                <input class="form-control" id="phoneNumber" type="text" placeholder="Phone Number">
+                <label for="day">Day</label>
+                <input class="form-control" id="day" type="text" placeholder="Day">
             </div>
             <div class="col-7">
                 <input type="submit" value="Create" class="btn btn-success">
@@ -55,9 +51,11 @@
                 <thread>
                     <tr>
                         <th>Id</th>
+                        <th>Bestelling Datum </th>
+                        <th>Klant Id</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Address</th>
+                        <th>Levering Datum</th>
                         <th>Phone Number</th>
                         <th>Actions</th>
                     </tr>
@@ -69,6 +67,6 @@
     </div>
 </div>
 
-<script src="js/klant.js"></script>
+<script src="js/bestelling.js"></script>
 </body>
 </html>

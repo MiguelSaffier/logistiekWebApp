@@ -54,4 +54,8 @@ public class BestellingService {
         return repository.updateLeveringDatum(id, jaar, maand, dag);
     }
 
+    public Bestelling updateBestelling(int bId, int kId, int jaar, int maand, int dag) {
+        return repository.updateBestelling(bId, kId, jaar, maand, dag);
+    }
+
 }

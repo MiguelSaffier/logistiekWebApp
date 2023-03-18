@@ -24,9 +24,9 @@ public class VrachtWagenController {
     @Path("/add")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Voertuig add(@QueryParam("merk") String merk,
-                        @QueryParam("capaciteit") int capaciteit,
-                        @QueryParam("kentekenNummer") String kentekenNummer) {
+    public Voertuig add(@FormParam("merk") String merk,
+                        @FormParam("capaciteit") int capaciteit,
+                        @FormParam("kentekenNummer") String kentekenNummer) {
         return voertuigService.createVoertuig("vrachtwagen", merk, capaciteit, kentekenNummer);
     }
 

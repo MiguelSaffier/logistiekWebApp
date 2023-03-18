@@ -19,8 +19,8 @@ public class ChauffeurService {
         return repository.getChauffeur();
     }
 
-    public void createChauffeur(String voornaam, String achternaam, String telefoon, String imagePath) {
-        repository.createChauffeur(voornaam, achternaam, telefoon, imagePath);
+    public Chauffeur createChauffeur(String voornaam, String achternaam, String telefoon, String imagePath) {
+        return repository.createChauffeur(voornaam, achternaam, telefoon, imagePath);
     }
 
     public Chauffeur createChauffeur(Chauffeur chauffeur) {
@@ -49,6 +49,10 @@ public class ChauffeurService {
 
     public byte[] findChauffeurImage(int id){
         return repository.findChauffeurImage(id);
+    }
+
+    public Chauffeur updateChauffeur(int id, String voornaam, String achternaam, String telefoon, String imagePath){
+        return repository.updateChauffeur(id, voornaam, achternaam, telefoon, imagePath);
     }
 
 }

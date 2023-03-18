@@ -114,6 +114,23 @@ public class KlantRepo {
         return klant;
     }
 
+    public Klant updateKlant(int id, String voornaam, String achternaam, String adres, String telefoon) {
+        try {
+            entityManager.getTransaction().begin();
+            klant = findKlantByid(id);
+            klant.setVoornaam(voornaam);
+            klant.setAchternaam(achternaam);
+            klant.setAdres(adres);
+            klant.setTelefoon(telefoon);
+            entityManager.persist(klant);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+        return klant;
+    }
+
     public void deleteKlant(int id) {
         try {
             entityManager.getTransaction().begin();

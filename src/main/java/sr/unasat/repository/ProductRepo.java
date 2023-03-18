@@ -143,4 +143,21 @@ public class ProductRepo {
         }
     }
 
+
+    public Product updateProduct(int id, String naam, double prijs, String adres, String imagePath) {
+        try {
+            entityManager.getTransaction().begin();
+            product = findOneProductbyId(id);
+            product.setPrijs(prijs);
+            product.setNaam(naam);
+            product.setAdres(adres);
+            product.setImage(imagePath);
+            entityManager.persist(product);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+        return product;
+    }
 }

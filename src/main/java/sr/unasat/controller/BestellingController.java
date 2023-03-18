@@ -32,12 +32,14 @@ public class BestellingController {
     @Path("/add")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Bestelling add(@QueryParam("klantId") int id,
-                          @QueryParam("year") int jaar,
-                          @QueryParam("month") int maand,
-                          @QueryParam("day") int dag) {
+    public Bestelling add(@FormParam("klantId") int id,
+                          @FormParam("year") int jaar,
+                          @FormParam("month") int maand,
+                          @FormParam("day") int dag) {
         return bestellingService.createBestelling(id, jaar, maand, dag);
     }
+
+
 
 
     @Path("/find/{id}")
@@ -69,6 +71,22 @@ public class BestellingController {
                                         @QueryParam("maand") int maand,
                                         @QueryParam("dag") int dag) {
         Bestelling bestelling = bestellingService.updateLeveringDatum(id, jaar, maand, dag);
+        if (bestelling == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.ok(bestelling).build();
+        }
+    }
+
+    @Path("/update")
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response update(@QueryParam("bestellingId") int bId,
+                           @FormParam("klantId") int kId,
+                           @FormParam("year") int jaar,
+                           @FormParam("month") int maand,
+                           @FormParam("day") int dag) {
+        Bestelling bestelling = bestellingService.updateBestelling(bId, kId, jaar, maand, dag);
         if (bestelling == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         } else {

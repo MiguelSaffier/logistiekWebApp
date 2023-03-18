@@ -1,14 +1,24 @@
 
-// let firstName = "John";
-// let lastName = "Doe";
-// let address = "123 Main St";
-// let phoneNumber = "555-1234";
-//
+// var firstNamew = "John";
+// var lastNamew = "Doe";
+// var addressw = "123 Main St";
+// var phoneNumberw = "555-1234";
+
+// var firstNameInputw = document.getElementById("firstNamep");
+// var lastNameInputw = document.getElementById("lastNamep");
+// var addressInputw = document.getElementById("adresp");
+// var phoneNumberInputw = document.getElementById("phoneNumberp");
+
+// firstNameInputw.value = firstNamew;
+// lastNameInputw.value = lastNamew;
+// addressInputw.value = addressw;
+// phoneNumberInputw.value = phoneNumberw;
+
 // let firstNameInput = document.getElementById("firstNamep");
-// let lastNameInput = document.getElementById("lastNamep");                    Dit is afhankelijk van inlog gegevens
-// let addressInput = document.getElementById("adresp");                        maar in log gegevens zijn onderaan
-// let phoneNumberInput = document.getElementById("phoneNumberp");              maar als ik dit gedeelte onderaan zet
-//                                                                              WERKT HET NIETTTT
+// let lastNameInput = document.getElementById("lastNamep");                    //Dit is afhankelijk van inlog gegevens
+// let addressInput = document.getElementById("adresp");                        //maar in log gegevens zijn onderaan
+// let phoneNumberInput = document.getElementById("phoneNumberp");              //maar als ik dit gedeelte onderaan zet
+//                                                                              //WERKT HET NIETTTT
 // firstNameInput.value = firstName;
 // lastNameInput.value = lastName;
 // addressInput.value = address;
@@ -56,5 +66,6 @@ klantSearchForm.addEventListener('submit', event => {
 
     }
 });
+
 
 

@@ -24,22 +24,18 @@
         <h1 class="display-5 mb-5"><strong>VRACHTWAGEN</strong></h1>
     </div>
     <div class="main row justify-content-center">
-        <form action="" id="klant-form" class="row justify-content-center mb-4" autocomplete="off">
+        <form action="http://localhost:8080/logistiekWebApp_war_exploded/api/vrachtwagen/add" id="vrachtwagen-form" class="row justify-content-center mb-4" autocomplete="off">
             <div class="col-7 mb-3">
-                <label for="firstName">First Name</label>
-                <input class="form-control" id="firstName" type="text" placeholder="Vrachtwagen Id">
+                <label for="merk">Merk</label>
+                <input class="form-control" id="merk" type="text" placeholder="Merk">
             </div>
             <div class="col-7 mb-3">
-                <label for="lastName">Last Name</label>
-                <input class="form-control" id="lastName" type="text" placeholder="Merk">
+                <label for="capaciteit">Capaciteit</label>
+                <input class="form-control" id="capaciteit" type="text" placeholder="Capaciteit">
             </div>
             <div class="col-7 mb-3">
-                <label for="adres">Adress</label>
-                <input class="form-control" id="adres" type="text" placeholder="Kenteken Nummer">
-            </div>
-            <div class="col-7 mb-3">
-                <label for="phoneNumber">Phone Number</label>
-                <input class="form-control" id="phoneNumber" type="text" placeholder="Capaciteit">
+                <label for="kentekenNummer">Kenteken Nummer</label>
+                <input class="form-control" id="kentekenNummer" type="text" placeholder="Kenteken Nummer">
             </div>
             <div class="col-7">
                 <input type="submit" value="Create" class="btn btn-success">
@@ -49,24 +45,14 @@
             <table class="table table-striped table-dark">
                 <thread>
                     <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Adress</th>
-                        <th>Phone Number</th>
+                        <th>Id</th>
+                        <th>Merk</th>
+                        <th>Kenteken Nummer</th>
+                        <th>Capaciteit</th>
                         <th>Actions</th>
                     </tr>
                 </thread>
-                <tbody class="klant-list">
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <a href="" class="btn btn-warning btn-sm update">Update</a>
-                        <a href="" class="btn btn-danger btn-sm delete">Delete</a>
-                    </td>
-                </tr>
+                <tbody id="vrachtwagen-table-body">
                 </tbody>
             </table>
         </div>
@@ -77,6 +63,6 @@
 
 
 
-<script src="js/klant.js"></script>
+<script src="js/vrachtwagen.js"></script>
 </body>
 </html>

@@ -53,4 +53,8 @@ public class KlantService {
         repository.deleteKlant(id);
     }
 
+    public Klant updateKlant(int id, String voornaam, String achternaam, String adres, String telefoon){
+        return repository.updateKlant(id, voornaam, achternaam, adres, telefoon);
+    }
+
 }
