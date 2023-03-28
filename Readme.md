@@ -14,7 +14,7 @@ transporteren van zandsoorten en bouwmaterialen
 * producten
 * chauffeurs
 
-###Instructies:
+### Instructies:
 * Opstarten met tomcat en normaal werken alsof het een website is. 
 * Sign In or Sign Up, add to Cart and Confirm Order. 
 * Admin Page is toegankelijk door in te loggen als admin, [admin, admin]
